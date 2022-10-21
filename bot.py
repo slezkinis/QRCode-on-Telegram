@@ -22,10 +22,14 @@ def start(message):
 
 @bot.message_handler(commands=['qrcode'])
 def qrcode(message):
-    main.qr_code(message.text, 'qrcode.png')
+    text = message.text
+    if text == '/qrcode':
+        text = '/qrcode https://www.youtube.com/channel/UC92EEOWePEoz09IpI4MZ3Wg'
+    text = text.split()
+    main.qr_code(text[1], 'qrcode.png')
     with open('qrcode.png', 'rb') as file:
         bot.send_photo(message.chat.id, file)
-        os.remove('qrcode.gif')
+        os.remove('qrcode.png')
     bot.send_message(message.chat.id, 'Вот Ваш QRCode!! Спасибо за использование!')
 
 
