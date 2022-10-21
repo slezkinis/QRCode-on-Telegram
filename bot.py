@@ -22,9 +22,9 @@ def start(message):
 
 @bot.message_handler(commands=['qrcode'])
 def qrcode(message):
-    main.qr_code(message.text, 'qrcode.gif')
-    with open('qrcode.gif', 'rb') as file:
-        bot.send_document(message.chat.id, document=file)
+    main.qr_code(message.text, 'qrcode.png')
+    with open('qrcode.png', 'rb') as file:
+        bot.send_photo(message.chat.id, file)
         os.remove('qrcode.gif')
     bot.send_message(message.chat.id, 'Вот Ваш QRCode!! Спасибо за использование!')
 
